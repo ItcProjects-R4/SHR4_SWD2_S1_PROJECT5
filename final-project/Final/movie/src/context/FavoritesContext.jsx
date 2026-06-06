@@ -5,6 +5,7 @@ const FavoritesContext = createContext();
 export function FavoritesProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
 
+  // Load data from localStorage only once when the app mounts
   useEffect(() => {
     const savedFavorites = localStorage.getItem("movie_favorites");
     if (savedFavorites) {
@@ -26,13 +27,12 @@ export function FavoritesProvider({ children }) {
     localStorage.setItem("movie_favorites", JSON.stringify(updatedFavorites));
   };
 
-  const checkIsFavorite = (id) => favorites.some((fav) => fav.id === id);
-
   return (
-    <FavoritesContext.Provider value={{ favorites, toggleFavorite, checkIsFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
       {children}
     </FavoritesContext.Provider>
   );
 }
 
+// Custom hook to easily grab favorites in any component
 export const useFavorites = () => useContext(FavoritesContext);

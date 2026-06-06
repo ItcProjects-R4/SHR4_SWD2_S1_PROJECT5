@@ -1,0 +1,32 @@
+.filterContainer {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  /* Ensure the container doesn't force a large height */
+}
+
+.filterButton {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0a0a0;
+  padding: 8px 20px;
+  border-radius: 25px; /* Pill shape is very modern */
+  cursor: pointer;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.filterButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.active {
+  background: #ff4757; /* Your app's accent red */
+  border-color: #ff4757;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.2);
+}

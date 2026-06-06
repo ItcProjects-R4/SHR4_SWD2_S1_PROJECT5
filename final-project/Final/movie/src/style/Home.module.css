@@ -106,8 +106,6 @@
   max-width: 560px;
 }
 
-
-
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -248,4 +246,29 @@
   .topCard div {
     padding: 16px;
   }
+}
+
+/* --- NEW FILTER BUTTON STYLES --- */
+.filterContainer {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.filterButtonActive {
+  background-color: #e50914;
+  font-weight: bold;
 }

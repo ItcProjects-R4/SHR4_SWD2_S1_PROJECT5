@@ -1,6 +1,7 @@
 import React from "react";
+import { useFavorites } from "../hooks/useFavorites";
 import styles from "../style/FavoriteWrapper.module.css";
-import { useFavorites } from "../context/FavoritesContext";
+
 export const FavoriteWrapper = ({ movie, children }) => {
   const { toggleFavorite, checkIsFavorite } = useFavorites();
   const isFav = checkIsFavorite(movie?.id);

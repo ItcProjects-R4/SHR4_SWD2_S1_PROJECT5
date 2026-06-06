@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { CategoryFilter } from "../components/CategoryFilter";
+import { FavoriteWrapper } from "../components/FavoriteWrapper";
 import { Link } from "react-router-dom";
 import styles from "../style/Home.module.css";
 import MovieCard from "../components/MovieCard";
@@ -15,8 +17,24 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  // This is the active filter for the CategoryFilter component
+  const [activeCategory, setActiveCategory] = useState("All");
 
+  const categories = [
+    { id: "All", name: "All Movies" },
+    { id: 28, name: "Action" },
+    { id: 35, name: "Comedy" },
+    { id: 27, name: "Horror" },
+    { id: 878, name: "Sci-Fi" },
+  ];
 
+  // Logic to filter movies based on genre_ids
+  const filteredMovies =
+    activeCategory === "All"
+      ? popularMovies
+      : popularMovies.filter((movie) =>
+          movie.genre_ids?.includes(activeCategory),
+        );
 
   useEffect(() => {
     if (!hasApiKey) {
@@ -44,9 +62,7 @@ function Home() {
     loadHomeMovies();
   }, []);
 
-
   const heroMovie = popularMovies[0];
-  const trendingMovies = popularMovies.slice(0, 10);
   const screenImages = topRatedMovies.slice(0, 5);
   const topMovies = topRatedMovies.slice(4, 8);
 
@@ -54,7 +70,6 @@ function Home() {
     <main className={styles.home}>
       {loading && <p className={styles.message}>Loading movies...</p>}
       {error && <p className={styles.message}>{error}</p>}
-
       {!loading && !error && heroMovie && (
         <>
           <section
@@ -62,7 +77,7 @@ function Home() {
             style={{
               backgroundImage: `linear-gradient(90deg, rgba(31, 16, 19, 0.92), rgba(31, 16, 19, 0.45)), url(${imageUrl(
                 heroMovie.backdrop_path,
-                "original"
+                "original",
               )})`,
             }}
           >
@@ -79,13 +94,23 @@ function Home() {
 
           <section className={styles.section}>
             <div className={styles.sectionHeader}>
-              <h2>Trending Now</h2>
-              <span>Movies Trending</span>
+              <div>
+                <h2>Trending Now</h2>
+                <span>Movies Trending</span>
+              </div>
+
+              <CategoryFilter
+                categories={categories}
+                activeCategory={activeCategory}
+                onSelectCategory={setActiveCategory}
+              />
             </div>
 
             <div className={styles.moviesGrid}>
-              {trendingMovies.map((movie) => (
-                <MovieCard key={movie.id} movie={movie} />
+              {filteredMovies.map((movie) => (
+                <FavoriteWrapper key={movie.id} movie={movie}>
+                  <MovieCard movie={movie} />
+                </FavoriteWrapper>
               ))}
             </div>
           </section>
@@ -97,8 +122,6 @@ function Home() {
                 Explore movie stories, ratings, posters, and cinematic details
                 in one clean experience powered by TMDB API.
               </p>
-
-              
             </div>
 
             <div className={styles.gallery}>
@@ -118,7 +141,10 @@ function Home() {
             <div className={styles.topGrid}>
               {topMovies.map((movie) => (
                 <article key={movie.id} className={styles.topCard}>
-                  <img src={imageUrl(movie.backdrop_path, "w500")} alt={movie.title} />
+                  <img
+                    src={imageUrl(movie.backdrop_path, "w500")}
+                    alt={movie.title}
+                  />
                   <div>
                     <span>{movie.vote_average.toFixed(1)}</span>
                     <h3>{movie.title}</h3>
@@ -131,7 +157,6 @@ function Home() {
 
           <section className={styles.features}>
             <h2>The Premium Choice</h2>
-
             <div className={styles.featureGrid}>
               <div>
                 <strong>Movie Search</strong>

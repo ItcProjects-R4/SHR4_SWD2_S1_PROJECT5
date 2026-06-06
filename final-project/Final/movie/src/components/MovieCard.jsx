@@ -1,18 +1,22 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../style/MovieCard.module.css";
 import { imageUrl } from "../api/tmdb";
+import { useFavorites } from "../context/FavoritesContext";
 
 function MovieCard({ movie }) {
+  const { favorites, toggleFavorite } = useFavorites();
+
   const title = movie?.title || "Movie Title";
   const year = movie?.release_date ? movie.release_date.slice(0, 4) : "2026";
   const rating = movie?.vote_average ? movie.vote_average.toFixed(1) : "8.5";
   const poster = imageUrl(movie?.poster_path);
   const movieId = movie?.id || 1;
-  const [isFavorite, setIsFavorite] = useState(false);
 
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
+  const isFavorite = favorites.some((fav) => fav.id === movieId);
+
+  const handleFavoriteClick = (e) => {
+    e.preventDefault();
+    toggleFavorite(movie);
   };
 
   return (

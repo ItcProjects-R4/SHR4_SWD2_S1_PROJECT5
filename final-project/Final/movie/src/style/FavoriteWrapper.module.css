@@ -1,0 +1,35 @@
+.wrapper {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 8px; /* Matches your MovieCard */
+}
+
+.workingBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+
+.workingBtn:hover {
+  transform: scale(1.05);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.isFav {
+  background: #ff4757;
+  border-color: #ff4757;
+}
