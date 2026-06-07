@@ -1,0 +1,72 @@
+.searchPage {
+  min-height: 100vh;
+  background-color: #1b0f12;
+  color: #f8efe7;
+  padding: 120px 8% 60px;
+}
+
+.header {
+  max-width: 760px;
+  margin-bottom: 34px;
+}
+
+.header h1 {
+  font-size: 42px;
+  margin-bottom: 18px;
+}
+
+.form {
+  display: flex;
+  gap: 12px;
+}
+
+.form input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #48262c;
+  border-radius: 8px;
+  background-color: #2b171b;
+  color: #f8efe7;
+  padding: 13px 14px;
+  font-size: 16px;
+}
+
+.form button {
+  border: 0;
+  border-radius: 8px;
+  background-color: #ff4f73;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 13px 22px;
+}
+
+.message {
+  color: #f7c873;
+}
+
+.moviesGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .moviesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .searchPage {
+    padding-top: 96px;
+  }
+
+  .form {
+    flex-direction: column;
+  }
+
+  .moviesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
