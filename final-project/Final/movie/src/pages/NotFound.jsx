@@ -1,9 +1,14 @@
 function NotFound() {
   return (
-    <main>
-      <h1>404</h1>
-      <p>Page not found.</p>
-    </main>
+    <>
+      <div className="ms-4 mt-4 vh-100">
+        <h2 className="fw-bold"> Not Found</h2>
+        <p>
+          <i className="fa-solid fa-triangle-exclamation"></i> This page does
+          not exist
+        </p>
+      </div>
+    </>
   );
 }
 

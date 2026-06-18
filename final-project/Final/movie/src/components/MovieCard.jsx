@@ -6,42 +6,32 @@ import { useFavorites } from "../context/FavoritesContext";
 function MovieCard({ movie }) {
   const { favorites, toggleFavorite } = useFavorites();
 
-  const title = movie?.title || "Movie Title";
-  const year = movie?.release_date ? movie.release_date.slice(0, 4) : "2026";
-  const rating = movie?.vote_average ? movie.vote_average.toFixed(1) : "8.5";
-  const poster = imageUrl(movie?.poster_path);
-  const movieId = movie?.id || 1;
-
-  const isFavorite = favorites.some((fav) => fav.id === movieId);
-
-  const handleFavoriteClick = (e) => {
-    e.preventDefault();
-    toggleFavorite(movie);
-  };
+  const isFavorite = favorites.some((fav) => fav.id === movie.id);
 
   return (
-    <article className={styles.card}>
-      <button
-        type="button"
-        className={`${styles.favoriteButton} ${
-          isFavorite ? styles.favoriteActive : ""
-        }`}
-        onClick={handleFavoriteClick}
-        aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
-      >
-        {isFavorite ? "Saved" : "Favorite"}
-      </button>
+    <div className={styles.movieCard}>
+      <img
+        src={imageUrl(movie.poster_path)}
+        alt={movie.title}
+      />
 
-      <Link to={`/movie/${movieId}`} className={styles.detailsLink}>
-        <img src={poster} alt={title} className={styles.poster} />
+      <h2>{movie.title}</h2>
+      <p>{(movie.overview || "").split(" ").slice(0, 18).join(" ")}...</p>
 
-        <div className={styles.content}>
-          <div className={styles.rating}>{rating}</div>
-          <h3>{title}</h3>
-          <p>{year}</p>
-        </div>
-      </Link>
-    </article>
+      <div className={styles.buttons}>
+        <Link to={`/moviedetails/${movie.id}`} className={styles.detailsButton}>
+          View Details
+        </Link>
+
+        <button
+          type="button"
+          onClick={() => toggleFavorite(movie)}
+          className={styles.favoriteButton}
+        >
+          {isFavorite ? "Remove Fav" : "Add Fav"}
+        </button>
+      </div>
+    </div>
   );
 }
 
