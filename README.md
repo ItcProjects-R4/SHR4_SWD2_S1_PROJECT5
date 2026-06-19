@@ -55,7 +55,7 @@ Movie App is a modern web application that allows users to discover trending mov
 
 ### Home Page
 
-![Home](screenshots/home.png)
+![home](screenshots/home.png)
 
 ### Trending Movies Page
 
