@@ -109,7 +109,7 @@ During the development process, the team faced several challenges, including coo
 
 ---
 
-## 🚀 Future Improvements
+##  Future Improvements
 
 - User Authentication and Login System.
 - Online Movie Ticket Booking System.
