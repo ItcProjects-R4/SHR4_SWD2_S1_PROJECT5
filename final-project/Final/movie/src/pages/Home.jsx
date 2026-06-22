@@ -33,7 +33,7 @@ export default function Home() {
       > 
         {trendingMovies.length > 0 && (
           <div className={styles.heroContent}>
-            <span className={styles.badge}>Popular Now</span>
+         
             <h1>{trendingMovies[0].title}</h1>
             <p>{trendingMovies[0].overview}</p>
 

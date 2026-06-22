@@ -26,7 +26,7 @@ function MovieCard({ movie }) {
         <button
           type="button"
           onClick={() => toggleFavorite(movie)}
-          className={styles.favoriteButton}
+         
         >
           {isFavorite ? "Remove Fav" : "Add Fav"}
         </button>
